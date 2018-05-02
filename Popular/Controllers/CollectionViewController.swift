@@ -123,6 +123,18 @@ class CollectionViewController: UICollectionViewController, CustomLayoutDelegate
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCollectionViewCell
 
+        cell.contentView.layer.cornerRadius = 5.0
+        cell.contentView.layer.borderWidth = 5.0
+        cell.contentView.layer.borderColor = UIColor.clear.cgColor
+        cell.contentView.layer.masksToBounds = true
+        
+        cell.layer.shadowColor = UIColor.lightGray.cgColor
+        cell.layer.shadowOffset = CGSize(width:2.0,height: 2.0)
+        cell.layer.shadowRadius = 10.0
+        cell.layer.shadowOpacity = 10.0
+        cell.layer.masksToBounds = false
+        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
+        
         if (self.cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject) != nil){
 
             print("Cached image used, no need to download it")
